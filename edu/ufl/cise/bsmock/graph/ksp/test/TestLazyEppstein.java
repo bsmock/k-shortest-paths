@@ -1,13 +1,13 @@
 package edu.ufl.cise.bsmock.graph.ksp.test;
 
 import edu.ufl.cise.bsmock.graph.Graph;
-import edu.ufl.cise.bsmock.graph.ksp.Eppstein;
+import edu.ufl.cise.bsmock.graph.ksp.LazyEppstein;
 import edu.ufl.cise.bsmock.graph.util.Path;
 
 import java.util.List;
 
 /**
- * Test of Eppstein's algorithm for computing the K shortest paths between two nodes in a graph.
+ * Test of the lazy version of Eppstein's algorithm for computing the K shortest paths between two nodes in a graph.
  *
  * Copyright (C) 2015  Brandon Smock (dr.brandon.smock@gmail.com, GitHub: bsmock)
  *
@@ -27,7 +27,7 @@ import java.util.List;
  * Created by Brandon Smock on October 7, 2015.
  * Last updated by Brandon Smock on December 21, 2015.
  */
-public class TestEppstein {
+public class TestLazyEppstein {
 
     public static void main(String args[]) {
         /* Uncomment any of these example tests */
@@ -63,10 +63,10 @@ public class TestEppstein {
 
         /* Compute the K shortest paths and record the completion time */
         System.out.print("Computing the " + k + " shortest paths from [" + source + "] to [" + target + "] ");
-        System.out.print("using Eppstein's algorithm... ");
+        System.out.print("using the lazy version of Eppstein's algorithm... ");
         List<Path> ksp;
         long timeStart = System.currentTimeMillis();
-        ksp = Eppstein.ksp(graph, source, target, k);
+        ksp = LazyEppstein.ksp(graph, source, target, k);
         long timeFinish = System.currentTimeMillis();
         System.out.println("complete.");
 
