@@ -24,7 +24,7 @@ import edu.ufl.cise.bsmock.graph.util.Path;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  * Created by Brandon Smock on September 23, 2015.
- * Last updated by Brandon Smock on December 21, 2015.
+ * Last updated by Brandon Smock on December 24, 2015.
  */
 public class TestYen {
 

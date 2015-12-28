@@ -23,7 +23,7 @@ import java.util.*;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  * Created by Brandon Smock on September 23, 2015.
- * Last updated by Brandon Smock on November 12, 2015.
+ * Last updated by Brandon Smock on December 24, 2015.
  */
 public final class Yen implements KSPAlgorithm {
 
