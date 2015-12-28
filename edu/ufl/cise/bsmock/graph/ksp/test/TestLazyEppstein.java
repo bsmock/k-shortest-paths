@@ -66,7 +66,8 @@ public class TestLazyEppstein {
         System.out.print("using the lazy version of Eppstein's algorithm... ");
         List<Path> ksp;
         long timeStart = System.currentTimeMillis();
-        ksp = LazyEppstein.ksp(graph, source, target, k);
+        LazyEppstein lazyEppsteinAlgorithm = new LazyEppstein();
+        ksp = lazyEppsteinAlgorithm.ksp(graph, source, target, k);
         long timeFinish = System.currentTimeMillis();
         System.out.println("complete.");
 

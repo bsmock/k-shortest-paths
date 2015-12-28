@@ -65,7 +65,8 @@ public class TestYen {
         System.out.print("using Yen's algorithm... ");
         List<Path> ksp;
         long timeStart = System.currentTimeMillis();
-        ksp = Yen.ksp(graph, source, target, k);
+        Yen yenAlgorithm = new Yen();
+        ksp = yenAlgorithm.ksp(graph, source, target, k);
         long timeFinish = System.currentTimeMillis();
         System.out.println("complete.");
 

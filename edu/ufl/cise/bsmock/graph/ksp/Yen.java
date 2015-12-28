@@ -25,9 +25,13 @@ import java.util.*;
  * Created by Brandon Smock on September 23, 2015.
  * Last updated by Brandon Smock on November 12, 2015.
  */
-public final class Yen {
+public final class Yen implements KSPAlgorithm {
 
-    private Yen() {}
+    public Yen() {};
+
+    public boolean isLoopless() {
+        return true;
+    }
 
     /**
      * Computes the K shortest paths in a graph from node s to node t using Yen's algorithm
@@ -38,7 +42,7 @@ public final class Yen {
      * @param K             the number of shortest paths to compute
      * @return              a list of the K shortest paths from s to t, ordered from shortest to longest
      */
-    public static  List<Path> ksp(Graph graph, String sourceLabel, String targetLabel, int K) {
+    public List<Path> ksp(Graph graph, String sourceLabel, String targetLabel, int K) {
         // Initialize containers for candidate paths and k shortest paths
         ArrayList<Path> ksp = new ArrayList<Path>();
         PriorityQueue<Path> candidates = new PriorityQueue<Path>();

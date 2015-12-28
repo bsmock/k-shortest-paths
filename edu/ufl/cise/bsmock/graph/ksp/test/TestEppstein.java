@@ -66,7 +66,8 @@ public class TestEppstein {
         System.out.print("using Eppstein's algorithm... ");
         List<Path> ksp;
         long timeStart = System.currentTimeMillis();
-        ksp = Eppstein.ksp(graph, source, target, k);
+        Eppstein eppsteinAlgorithm = new Eppstein();
+        ksp = eppsteinAlgorithm.ksp(graph, source, target, k);
         long timeFinish = System.currentTimeMillis();
         System.out.println("complete.");
 

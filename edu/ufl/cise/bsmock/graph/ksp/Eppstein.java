@@ -25,9 +25,13 @@ import java.util.*;
  * Created by Brandon Smock on October 5, 2015.
  * Last updated by Brandon Smock on November 11, 2015.
  */
-public final class Eppstein {
+public class Eppstein implements KSPAlgorithm {
 
-    private Eppstein() {}
+    public boolean isLoopless() {
+        return false;
+    }
+
+    public Eppstein() {};
 
     /**
      * Computes the K shortest paths (allowing cycles) in a graph from node s to node t in graph G using Eppstein's
@@ -76,7 +80,7 @@ public final class Eppstein {
      * @param K             the number of shortest paths to compute
      * @return              a list of the K shortest paths from s to t, ordered from shortest to longest
      */
-    public static List<Path> ksp(Graph graph, String sourceLabel, String targetLabel, int K) {
+    public List<Path> ksp(Graph graph, String sourceLabel, String targetLabel, int K) {
         /* Compute the shortest path tree, T, for the target node (the shortest path from every node in the graph to the
             target) */
         ShortestPathTree tree;
@@ -171,7 +175,7 @@ public final class Eppstein {
      * @param tree      the shortest path tree, T, rooted at the target node, t
      * @return
      */
-    public static HashMap<String,Double> computeSidetrackEdgeCosts(Graph graph, ShortestPathTree tree) {
+    protected static HashMap<String,Double> computeSidetrackEdgeCosts(Graph graph, ShortestPathTree tree) {
         HashMap<String, Double> sidetrackEdgeCostMap = new HashMap<String, Double>();
         List<Edge> edgeList = graph.getEdgeList();
         for (Edge edge : edgeList) {
@@ -196,7 +200,7 @@ public final class Eppstein {
      * @param nodeHeaps             an index/hash table of heap H_out(v), for each node v in the graph
      * @param edgeHeaps             an index/hash table of heaps H_out(v), but indexed by sidetrack edge
      */
-    public static void computeOutHeap(String nodeLabel, Graph graph, HashMap<String,Double> sidetrackEdgeCostMap, HashMap<String,EppsteinHeap> nodeHeaps, HashMap<String,EppsteinHeap> edgeHeaps) {
+    protected static void computeOutHeap(String nodeLabel, Graph graph, HashMap<String,Double> sidetrackEdgeCostMap, HashMap<String,EppsteinHeap> nodeHeaps, HashMap<String,EppsteinHeap> edgeHeaps) {
         Node node = graph.getNode(nodeLabel);
         // This list holds the 2nd through last sidetrack edges, ordered by sidetrack cost
         ArrayList<Edge> sidetrackEdges = new ArrayList<Edge>();
@@ -261,7 +265,7 @@ public final class Eppstein {
      * @param ksp               list of shortest paths found so far
      * @param pathPQ            priority queue of candidate paths
      */
-    public static void addExplicitChildrenToQueue(EppsteinPath kpathImplicit, ArrayList<Path> ksp, PriorityQueue<EppsteinPath> pathPQ) {
+    protected static void addExplicitChildrenToQueue(EppsteinPath kpathImplicit, ArrayList<Path> ksp, PriorityQueue<EppsteinPath> pathPQ) {
         double kpathCost = kpathImplicit.getCost();
         for(EppsteinHeap childHeap : kpathImplicit.getHeap().getChildren()) {
             // Get the index of the previous shorter path off of which this candidate sidetracks/branches
@@ -284,7 +288,7 @@ public final class Eppstein {
      * @param ksp               list of shortest paths found so far
      * @param pathPQ            priority queue of candidate paths
      */
-    public static void addCrossEdgeChildToQueue(HashMap<String,EppsteinHeap> outrootHeaps, EppsteinPath kpathImplicit, int prefPath, ArrayList<Path> ksp, PriorityQueue<EppsteinPath> pathPQ) {
+    protected static void addCrossEdgeChildToQueue(HashMap<String,EppsteinHeap> outrootHeaps, EppsteinPath kpathImplicit, int prefPath, ArrayList<Path> ksp, PriorityQueue<EppsteinPath> pathPQ) {
         if (outrootHeaps.containsKey(kpathImplicit.getHeap().getSidetrack().getToNode())) {
             EppsteinHeap childHeap = outrootHeaps.get(kpathImplicit.getHeap().getSidetrack().getToNode());
 
@@ -310,7 +314,7 @@ public final class Eppstein {
      * @param outrootHeaps      an index/hash table of heap H_T(v), for each node v in the graph
      * @param reversedSPT       the transpose graph, T', of the shortest path tree, T
      */
-    private static void recursiveOutrootHeaps(String nodeLabel, EppsteinArrayHeap currentArrayHeap, HashMap<String,EppsteinHeap> nodeHeaps, HashMap<String,EppsteinHeap> outrootHeaps, Graph reversedSPT) {
+    protected static void recursiveOutrootHeaps(String nodeLabel, EppsteinArrayHeap currentArrayHeap, HashMap<String,EppsteinHeap> nodeHeaps, HashMap<String,EppsteinHeap> outrootHeaps, Graph reversedSPT) {
         // Get H_out(v)
         EppsteinHeap sidetrackHeap = nodeHeaps.get(nodeLabel);
 

@@ -26,10 +26,9 @@ import java.util.*;
  * Created by Brandon Smock on October 5, 2015.
  * Last updated by Brandon Smock on November 11, 2015.
  */
-public final class LazyEppstein {
+public final class LazyEppstein extends Eppstein implements KSPAlgorithm {
 
-    private LazyEppstein() {
-    }
+    public LazyEppstein() {};
 
     /**
      * Computes the K shortest paths (allowing cycles) in a graph from node s to node t in graph G using the lazy
@@ -67,7 +66,7 @@ public final class LazyEppstein {
      * @return a list of the K shortest paths from s to t, ordered from shortest to longest
      */
 
-    public static List<Path> ksp(Graph graph, String sourceLabel, String targetLabel, int K) {
+    public List<Path> ksp(Graph graph, String sourceLabel, String targetLabel, int K) {
         /* Compute the shortest path tree, T, for the target node (the shortest path from every node in the graph to the
             target) */
         ShortestPathTree tree;
@@ -78,7 +77,7 @@ public final class LazyEppstein {
         }
 
         // Compute the set of sidetrack edge costs
-        HashMap<String,Double> sidetrackEdgeCostMap = Eppstein.computeSidetrackEdgeCosts(graph, tree);
+        HashMap<String,Double> sidetrackEdgeCostMap = computeSidetrackEdgeCosts(graph, tree);
 
         /* Make indexes to give (fast) access to these heaps later */
         // Heap H_out(v) for every node v
@@ -112,7 +111,7 @@ public final class LazyEppstein {
             ksp.add(kpath);
 
             // Push the (up to 3) children of this path within the Eppstein heap onto the priority queue
-            Eppstein.addExplicitChildrenToQueue(kpathImplicit, ksp, pathPQ);
+            addExplicitChildrenToQueue(kpathImplicit, ksp, pathPQ);
 
             /* Check for the existence of a potential fourth child, known as a "cross edge", to push onto the queue.
                 This heap edge/child does not need to be explicitly represented in the Eppstein heap because it is easy
@@ -122,7 +121,7 @@ public final class LazyEppstein {
             if (!outrootHeaps.containsKey(kpathImplicit.getHeap().getSidetrack().getToNode())) {
                 buildHeap(kpathImplicit.getHeap().getSidetrack().getToNode(), graph, sidetrackEdgeCostMap, nodeHeaps, edgeHeaps, outrootHeaps, arrayHeaps, tree);
             }
-            Eppstein.addCrossEdgeChildToQueue(outrootHeaps, kpathImplicit, i, ksp, pathPQ);
+            addCrossEdgeChildToQueue(outrootHeaps, kpathImplicit, i, ksp, pathPQ);
         }
 
         return ksp;
@@ -143,7 +142,7 @@ public final class LazyEppstein {
      */
     private static void buildHeap(String nodeLabel, Graph graph, HashMap<String, Double> sidetrackEdgeCostMap, HashMap<String, EppsteinHeap> nodeHeaps, HashMap<String, EppsteinHeap> edgeHeaps, HashMap<String, EppsteinHeap> outrootHeaps, HashMap<String, EppsteinArrayHeap> arrayHeaps, ShortestPathTree tree) {
         /* Part 1: Compute sub-heap H_out(v). */
-        Eppstein.computeOutHeap(nodeLabel, graph, sidetrackEdgeCostMap, nodeHeaps, edgeHeaps);
+        computeOutHeap(nodeLabel, graph, sidetrackEdgeCostMap, nodeHeaps, edgeHeaps);
 
         /* PART 2: Compute sub-heap H_T(v) */
 
