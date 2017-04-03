@@ -9,9 +9,13 @@ If you are using this code in published research, please give it a citation!
 
 Author: Brandon Smock
 
-Website: https://github.com/bsmock/k-shortest-paths
+Release 1.0.1 of the code has DOI: 10.5281/zenodo.439762
 
-Email me if I can help make it easier for you to cite my work. Thank you!
+If you downloaded the code prior to release 1.0.1, you are using the same code that is in release 1.0.1, and you can cite that release.
+
+Please see https://doi.org/10.5281/zenodo.439762 or https://zenodo.org/badge/latestdoi/45944277 for more information on the release and DOI.
+
+Repository location: https://github.com/bsmock/k-shortest-paths
 
 Any questions or comments, please email Brandon Smock (dr.brandon.smock@gmail.com).
 
