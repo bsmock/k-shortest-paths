@@ -1,0 +1,30 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	
+	<!--
+	Regarding the groupId and artifactId below:
+	The current "home" of this project is this fork:
+	https://github.com/TomasJohansson/k-shortest-paths
+	That fork was created by Tomas Johansson ( groupId : com.programmerare )
+	   
+	The forked project was found at this URL:
+	https://github.com/bsmock/k-shortest-paths
+	with package names beginning with this: 
+	edu.ufl.cise.bsmock.graph
+	
+	When the project was forked it did not have any maven file (this pom.xml you now are reading from)
+	and therefore I chose an artifactId as below, but if the forked project 
+	later will become submitted as a pull request into the original project
+	then these comments should be removed from the pom file and  
+	more appropriate groupId and artifacTd should be chosen.   
+	 -->
+	<groupId>com.programmerare</groupId>
+	<artifactId>fork-of-edu.ufl.cise.bsmock.graph</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+	
+</project>
