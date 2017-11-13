@@ -33,7 +33,7 @@ import java.util.*;
  * Created by Brandon Smock on April 6, 2016.
  * Last updated by Brandon Smock on April 7, 2016.
  */
-public class SimpleEppstein implements KSPAlgorithm, KSPAlgorithmCutoff {
+public class SimpleEppstein implements KSPAlgorithm {
 
     public boolean isLoopless() {
         return false;
